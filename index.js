@@ -16,7 +16,7 @@ app.set('view engine', 'pug');
 app.use(useragent.express());
 
 
-app.get('/', function (req, res) { //regexp checks if at least one char in path
+app.get('/', function (req, res) { 
 	var userAgentInfo = req.useragent;
 	res.render('index', {
 		title: 'FCC Request Header Microservice',
