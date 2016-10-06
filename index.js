@@ -1,10 +1,6 @@
 var express = require('express');
 var path = require('path');
-var url = require('url');
-var bodyParser = require('body-parser');
-var http = require('http');
 var useragent = require('express-useragent');
-//var requestIp = require('request-ip');
 
 var app = express();
 
@@ -16,21 +12,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(useragent.express());
-//app.enable('trust proxy');
+//this is necessary before using express (req.ip):
 app.set('trust proxy', true);
 app.get('/', function (req, res) { 
 	var clientIp = req.ip;
 	var language = req.headers['accept-language'].split(',')[0];
-	console.log(language)
-	//requestIp.getClientIp(req); 
-	//req.headers['X-Forwarded-For'];
-	//JSON.stringify(req.headers['X-Forwarded-For'])
-	//JSON.stringify(req.ip)
-	//JSON.stringify(req.headers['x-real-ip'])
-	//JSON.stringify(req.connection.remoteAddress);
-	//JSON.stringify(req.headers) || req.connection.remoteAddress;
-	console.log(clientIp)
-	//
 	var userAgentInfo = req.useragent;
 	var os = userAgentInfo.os;
 	var osV = userAgentInfo.version;
